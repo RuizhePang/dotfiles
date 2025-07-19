@@ -31,10 +31,17 @@ return require('packer').startup(function(use)
   -- use 'p00f/nvim-ts-rainbow'
   use 'HiPhish/rainbow-delimiters.nvim'
   use {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig'
-    }
+    "williamboman/mason.nvim",
+    commit = "4da89f3"
+  }
+  use {
+    "williamboman/mason-lspconfig.nvim",
+    commit = "1a31f82"
+  }
+  use {
+    'neovim/nvim-lspconfig',
+    commit = "cf97d2485fc3f6d4df1b79a3ea183e24c272215e"
+  }
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
@@ -47,6 +54,8 @@ return require('packer').startup(function(use)
 
   use 'akinsho/bufferline.nvim'
   use 'lewis6991/gitsigns.nvim'
+
+  use "ojroques/nvim-osc52"
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',  -- 文件检索
