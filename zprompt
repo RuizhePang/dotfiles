@@ -54,8 +54,7 @@ else
 fi
 
 # Final Prompt (multi-line, Git-aware)
-PROMPT='%F{black}%~%f' # sets terminal title (in iTerm2, use custom rules)
-PROMPT+=$'\n'"${bold}${userStyle}%n${white} at ${hostStyle}%m${white} in ${green}%~"
+PROMPT=$'\n'"${bold}${userStyle}%n${white} at ${hostStyle}%m${white} in ${green}%~"
 PROMPT+='$(prompt_git)'
 PROMPT+=$'\n'"${white}$ ${reset}"
 
