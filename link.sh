@@ -17,7 +17,7 @@ link_files_recursively() {
     mkdir -p "$dest"
 
     for item in "$src"/*; do
-        [ -e "$item" ] || continue  # 防止空目录
+        [ -e "$item" ] || continue
 
         local name=$(basename "$item")
         local target="$dest/$name"
