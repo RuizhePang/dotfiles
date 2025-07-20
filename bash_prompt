@@ -103,8 +103,9 @@ fi;
 
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]"; # working directory base name
-PS1+="\[${bold}\]\n"; # newline
-PS1+="\[${userStyle}\]\u"; # username
+PS1+="\n"
+PS1+="${green}"'$(if [[ -n "$CONDA_DEFAULT_ENV" ]]; then echo "(${CONDA_DEFAULT_ENV}) "; fi)'  # 动态环境名
+PS1+="${reset}${userStyle}\u" # username
 PS1+="\[${white}\] at ";
 PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] in ";

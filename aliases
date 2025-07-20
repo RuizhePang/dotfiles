@@ -144,3 +144,17 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# slurm
+alias ALLsqueue="squeue -o '%.6i %.10P %.13u %25b %4C %10m %.8T %.12M %.6D %30R %10N %50j'" # list all the jobs
+alias mysq="ALLsqueue | grep `whoami`" # list my jobs
+alias mysinfo="sinfo -o '%25R %75N  %10c  %10m  %25f  %30G '" # list information of GPUs, nodes, etc
+alias sshgpu="srun --gres=gpu:1 --mem=32gb --cpus-per-task=8 --wait=0 -t 0 ${nodelist} --pty bash"
+alias jobinfo="scontrol show jobid -dd $1" # check information of a slurm jobid
+alias pidinfo="ps -Flww -p $1" # check information via pid
+alias gmem='function _gmem(){ srun --jobid=$1 nvidia-smi; };_gmem'
+alias sparse="~/tools/sparse.py" # list available GPUs
+
+alias 11p8="CONDA_DEFAULT_ENV=tums_cuda11p8; source ~/.bashrc; source activate tums_cuda11p8;"
+alias 11p7="CONDA_DEFAULT_ENV=tums_cuda11p7; source ~/.bashrc; source activate tums_cuda11p7;"
+alias 11p1="CONDA_DEFAULT_ENV=tums_cuda11p1; source ~/.bashrc; source activate tums_cuda11p1;"
