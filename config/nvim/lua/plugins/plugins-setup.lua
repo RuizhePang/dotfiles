@@ -27,9 +27,8 @@ return require('packer').startup(function(use)
   }
   use 'nvim-tree/nvim-tree.lua'
   use 'christoomey/vim-tmux-navigator'
-  -- use 'nvim-treesitter/nvim-treesitter'
-  -- use 'p00f/nvim-ts-rainbow'
-  use 'HiPhish/rainbow-delimiters.nvim'
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'p00f/nvim-ts-rainbow'
   use {
     "williamboman/mason.nvim",
     commit = "4da89f3"

@@ -31,3 +31,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export PATH="$HOME/.nvm/versions/node/v22.17.1/bin/:$PATH"
