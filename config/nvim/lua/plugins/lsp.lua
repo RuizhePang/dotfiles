@@ -12,7 +12,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "jdtls",
-    "verible",
+    "rust_analyzer",
   },
 })
 
@@ -35,15 +35,20 @@ require("lspconfig").jdtls.setup({
   },
 })
 
-vim.filetype.add({
-  extension = {
-    v = "verilog",
-    sv = "systemverilog",
-  },
-})
-
-require("lspconfig").verible.setup({
+-- Rust
+require("lspconfig").rust_analyzer.setup({
   capabilities = capabilities,
-  cmd = { "verible-verilog-ls" },
-  filetypes = { "verilog", "systemverilog" },
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = { allFeatures = true },
+      checkOnSave = { command = "clippy" },  -- 保存时自动用 Clippy 检查
+    },
+  },
+  on_attach = function(client, bufnr)
+    local opts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  end,
 })
