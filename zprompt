@@ -1,62 +1,85 @@
-# ~/.zsh_prompt_solarized.zsh
+# zsh prompt configuration
 
-autoload -U colors && colors
 setopt prompt_subst
 
 prompt_git() {
-	local s=''
-	local branchName=''
+  local s=''
+  local branchName=''
 
-	git rev-parse --is-inside-work-tree &>/dev/null || return
+  git rev-parse --is-inside-work-tree &>/dev/null || return
 
-	branchName=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || \
-		git describe --all --exact-match HEAD 2>/dev/null || \
-		git rev-parse --short HEAD 2>/dev/null || \
-		echo '(unknown)')
+  branchName="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || \
+    git describe --all --exact-match HEAD 2>/dev/null || \
+    git rev-parse --short HEAD 2>/dev/null || \
+    echo '(unknown)')"
 
-	local repoUrl=$(git config --get remote.origin.url)
-	if [[ "$repoUrl" == *"chromium/src.git"* ]]; then
-		s+='*'
-	else
-		git diff --quiet --ignore-submodules --cached || s+='+'
-		git diff-files --quiet --ignore-submodules -- || s+='!'
-		[[ -n $(git ls-files --others --exclude-standard) ]] && s+='?'
-		git rev-parse --verify refs/stash &>/dev/null && s+='$'
-	fi
+  repoUrl="$(git config --get remote.origin.url)"
+  if [[ "$repoUrl" == *"chromium/src.git"* ]]; then
+    s+='*'
+  else
+    git diff --quiet --ignore-submodules --cached || s+='+'
+    git diff-files --quiet --ignore-submodules -- || s+='!'
+    [[ -n "$(git ls-files --others --exclude-standard)" ]] && s+='?'
+    git rev-parse --verify refs/stash &>/dev/null && s+='$'
+  fi
 
-	[[ -n "$s" ]] && s=" [$s]"
+  [[ -n "$s" ]] && s=" [$s]"
 
-	echo " on %F{magenta}${branchName}%F{blue}${s}%f"
+  echo -n "${1}${branchName}${2}${s}"
 }
 
-# Color styles
-bold="%B"
-reset="%f%b%k%F{default}%K{default}"
-white="%F{white}"
-green="%F{green}"
-yellow="%F{yellow}"
-orange="%F{208}"
-red="%F{red}"
-blue="%F{blue}"
-violet="%F{magenta}"
-
-# Username and Host color based on context
-if [[ "$USER" == "root" ]]; then
-	userStyle="${red}"
+if tput setaf 1 &>/dev/null; then
+  tput sgr0
+  bold=$(tput bold)
+  reset=$(tput sgr0)
+  black=$(tput setaf 0)
+  blue=$(tput setaf 33)
+  cyan=$(tput setaf 37)
+  green=$(tput setaf 64)
+  orange=$(tput setaf 166)
+  purple=$(tput setaf 125)
+  red=$(tput setaf 124)
+  violet=$(tput setaf 61)
+  white=$(tput setaf 15)
+  yellow=$(tput setaf 136)
 else
-	userStyle="${orange}"
+  bold=''
+  reset="%{[0m%}"
+  black="%{[1;30m%}"
+  blue="%{[1;34m%}"
+  cyan="%{[1;36m%}"
+  green="%{[1;32m%}"
+  orange="%{[1;33m%}"
+  purple="%{[1;35m%}"
+  red="%{[1;31m%}"
+  violet="%{[1;35m%}"
+  white="%{[1;37m%}"
+  yellow="%{[1;33m%}"
+fi
+
+if [[ "$USER" == "root" ]]; then
+  userStyle="${red}"
+else
+  userStyle="${orange}"
 fi
 
 if [[ -n "$SSH_TTY" ]]; then
-	hostStyle="${bold}${red}"
+  hostStyle="${bold}${red}"
 else
-	hostStyle="${yellow}"
+  hostStyle="${yellow}"
 fi
 
-# Final Prompt (multi-line, Git-aware)
-PROMPT=$'\n'"${bold}${userStyle}%n${white} at ${hostStyle}%m${white} in ${green}%~"
-PROMPT+='$(prompt_git)'
-PROMPT+=$'\n'"${white}$ ${reset}"
+# zsh prompt
+PS1="%{$reset%}"        # reset
+PS1+="%{$green%}\$(if [[ -n \$CONDA_DEFAULT_ENV ]]; then echo \"(\$CONDA_DEFAULT_ENV) \"; fi)" # conda env
+PS1+="%{$reset%}${userStyle}%n"   # user
+PS1+="%{$white%} at "
+PS1+="%{$hostStyle%}%m"           # host
+PS1+="%{$white%} in "
+PS1+="%{$green%}%~"               # cwd
+PS1+="\$(prompt_git \"%{$white%} on %{$violet%}\" \"%{$blue%}\")"
+PS1+="
+"
+PS1+="%{$white%}$ %{$reset%}"
 
-# Secondary prompt
-PS2="${yellow}→ ${reset}"
+PS2="%{$yellow%}→ %{$reset%}"
