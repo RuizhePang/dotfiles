@@ -61,6 +61,8 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use {'lervag/vimtex'}
+
   use {"akinsho/toggleterm.nvim", tag = '*',}
   use {"github/copilot.vim"}
 
