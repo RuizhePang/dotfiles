@@ -1,53 +1,37 @@
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/wangzq_lab/cse12311006/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/wangzq_lab/cse12311006/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/wangzq_lab/cse12311006/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/wangzq_lab/cse12311006/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-#
-# export PATH="/home/wangzq_lab/cse12311006/anaconda3/bin:$PATH"
-
 export PATH="$HOME/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/ohpc/pub/apps/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/ohpc/pub/apps/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/ohpc/pub/apps/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/ohpc/pub/apps/anaconda3/bin:$PATH"
+    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/anaconda3/etc/profile.d/conda.sh"
+    # else
+    #     export PATH="$HOME/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/cse12311006/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/cse12311006/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/cse12311006/anaconda3/etc/profile.d/conda.sh"
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+if [ -f "$HOME/.local/bin/micromamba" ]; then
+    export MAMBA_EXE='$HOME/.local/bin/micromamba';
+    export MAMBA_ROOT_PREFIX='$HOME/.micromamba';
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
     else
-        export PATH="/home/cse12311006/anaconda3/bin:$PATH"
+        alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
     fi
+    unset __mamba_setup
+    # <<< mamba initialize <<<
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi

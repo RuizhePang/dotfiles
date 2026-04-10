@@ -25,5 +25,5 @@ opt.smartcase = true
 vim.o.background = "light"
 opt.termguicolors = true
 opt.signcolumn = "yes"
-vim.cmd[[colorscheme tokyonight-moon]]
+vim.cmd[[colorscheme tokyonight-night]]
 -- vim.cmd[[colorscheme kanagawa]]

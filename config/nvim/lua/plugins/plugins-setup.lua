@@ -20,6 +20,7 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
+  use 'kyazdani42/nvim-web-devicons'
   use "rebelot/kanagawa.nvim"
   use {
   'nvim-lualine/lualine.nvim',
@@ -52,7 +53,10 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
 
   use 'akinsho/bufferline.nvim'
-  use 'lewis6991/gitsigns.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    commit="751bfae26a3561394afcafdf92b0dc52988ce436"
+  }
 
   use "ojroques/nvim-osc52"
 
