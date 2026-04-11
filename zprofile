@@ -1,3 +1,6 @@
+if [[ -d "$HOME/.micromamba/share/zsh/site-functions" || -d "$HOME/.micromamba/share/zsh/5.9/functions" ]]; then
+    export FPATH="$HOME/.micromamba/share/zsh/site-functions:$HOME/.micromamba/share/zsh/5.9/functions:$FPATH"
+fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
