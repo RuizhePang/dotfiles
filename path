@@ -1,4 +1,9 @@
+if [ -d "$HOME/.local/bin" ]; then
 export PATH="$HOME/.local/bin:$PATH"
+fi
+if [ -d "/opt/homebrew/bin" ]; then
+export PATH="/opt/homebrew/bin:$PATH"
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
