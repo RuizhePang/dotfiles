@@ -18,15 +18,32 @@ vim.cmd([[
 ]])
 
 return require('packer').startup(function(use)
+  use({
+    "RuizhePang/naudio.nvim",
+    after = "image.nvim",
+    config = function()
+      require("naudio").setup()
+    end,
+  })
+  use({
+    "3rd/image.nvim",
+    config = function()
+      require("image").setup({
+        backend = "sixel", -- 或 "ueberzug" / "sixel"
+        processor = "magick_cli",
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            only_render_image_at_cursor = false,
+          },
+        },
+      })
+    end,
+  })
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
   use 'kyazdani42/nvim-web-devicons'
-  use({
-    "monok-robeto/nvim.sfx_player",
-    config = function()
-      require("nvim.sfx_player").setup()
-    end,
-  })
   use "rebelot/kanagawa.nvim"
   use {
   'nvim-lualine/lualine.nvim',
