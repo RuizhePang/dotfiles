@@ -21,6 +21,12 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
   use 'kyazdani42/nvim-web-devicons'
+  use({
+    "monok-robeto/nvim.sfx_player",
+    config = function()
+      require("nvim.sfx_player").setup()
+    end,
+  })
   use "rebelot/kanagawa.nvim"
   use {
   'nvim-lualine/lualine.nvim',
@@ -28,7 +34,10 @@ return require('packer').startup(function(use)
   }
   use 'nvim-tree/nvim-tree.lua'
   use 'christoomey/vim-tmux-navigator'
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    commit = "e49f1e8ef3e8450a8446cb1f2bbb53c919f60b6d"
+  }
   use 'p00f/nvim-ts-rainbow'
   use {
     "williamboman/mason.nvim",
@@ -40,7 +49,7 @@ return require('packer').startup(function(use)
   }
   use {
     'neovim/nvim-lspconfig',
-    commit = "cf97d2485fc3f6d4df1b79a3ea183e24c272215e"
+    commit = "562487bc108bf73c2493f9e701b9334b48163216"
   }
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'

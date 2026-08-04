@@ -16,4 +16,9 @@ require("nvim-tree").setup({
     dotfiles = true,
     git_ignored = false,
   },
+  on_attach = function(bufnr)
+    local api = require("nvim-tree.api")
+    api.config.mappings.default_on_attach(bufnr)          -- keep defaults
+    require("nvim.sfx_player").nvimtree_attach(bufnr)      -- add audio handling
+  end,
 })
