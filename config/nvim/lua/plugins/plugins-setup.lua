@@ -19,46 +19,44 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use({
+    'wbthomason/packer.nvim'
+  })
+  use({
     "RuizhePang/naudio.nvim",
     after = "image.nvim",
-    config = function()
-      require("naudio").setup()
-    end,
   })
   use({
     "3rd/image.nvim",
-    config = function()
-      require("image").setup({
-        backend = "sixel", -- 或 "ueberzug" / "sixel"
-        processor = "magick_cli",
-        integrations = {
-          markdown = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            only_render_image_at_cursor = false,
-          },
-        },
-      })
-    end,
   })
-  use 'wbthomason/packer.nvim'
-  use 'folke/tokyonight.nvim'
-  use 'kyazdani42/nvim-web-devicons'
-  use "rebelot/kanagawa.nvim"
   use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+      'folke/tokyonight.nvim',
+      commit = "38d01f75d64c2862216cd4271aa7576b9dd20da8"
   }
-  use 'nvim-tree/nvim-tree.lua'
+  use({'kyazdani42/nvim-web-devicons'})
+  use({
+    "rebelot/kanagawa.nvim",
+    commit = "19d9f23556d264b5721e04035709acdb20599904"
+  })
+  use({
+    'nvim-lualine/lualine.nvim',
+    commit = "02d61f515e7d88e1b02366ca972aecf2768d53df",
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  })
+  use({ 
+    'nvim-tree/nvim-tree.lua',
+    commit = "ae595611fb2225f2041996c042aa4e4b8663b41e"
+  })
   use 'christoomey/vim-tmux-navigator'
-  use {
+  use({
     'nvim-treesitter/nvim-treesitter',
-    commit = "e49f1e8ef3e8450a8446cb1f2bbb53c919f60b6d"
-  }
-  use 'p00f/nvim-ts-rainbow'
+    branch = "master",
+    run = ":TSUpdate",
+  })
+  use({
+    "HiPhish/rainbow-delimiters.nvim"
+  })
   use {
     "williamboman/mason.nvim",
-    commit = "4da89f3"
   }
   use {
     "williamboman/mason-lspconfig.nvim",
