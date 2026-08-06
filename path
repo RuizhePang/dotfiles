@@ -50,6 +50,11 @@ if [ -f "$HOME/.local/bin/micromamba" ]; then
     # <<< mamba initialize <<<
 fi
 
+if [ -d "$HOME/.micromamba/bin" ]; then
+    export PATH="$HOME/.micromamba/bin:$PATH"
+fi
+
+
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -185,3 +185,5 @@
 [user]
 	name = RuizhePang
 	email = ruizhepang@gmail.com
+[credential]
+	helper = cache --timeout=28800000

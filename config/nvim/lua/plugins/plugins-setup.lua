@@ -90,7 +90,10 @@ return require('packer').startup(function(use)
   }
 
   use {"akinsho/toggleterm.nvim", tag = '*',}
-  use {"github/copilot.vim"}
+  use({
+    "github/copilot.vim",
+    commit = "87038123804796ca7af20d1b71c3428d858a9124"
+    })
 
   if packer_bootstrap then
     require('packer').sync()
