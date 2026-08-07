@@ -3,11 +3,11 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "cpp", "vim", "vimdoc", "bash", "javascript", "json", "python", "markdown", "markdown_inline", "verilog" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+  sync_install = true,
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = false,
+  auto_install = true,
 
   -- List of parsers to ignore installing (or "all")
   -- ignore_install = { "javascript" },
@@ -16,7 +16,7 @@ require'nvim-treesitter.configs'.setup {
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
   highlight = {
-    enable = false,
+    enable = true,
 
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
