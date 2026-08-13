@@ -10,9 +10,9 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "lua_ls",
-    "jdtls",
-    "verible",
+    -- "lua_ls",
+    -- "jdtls",
+    -- "verible",
   },
 })
 
