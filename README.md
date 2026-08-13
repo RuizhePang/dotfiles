@@ -19,6 +19,11 @@ export MAMBA_ROOT_PREFIX="$HOME/.micromamba"
 micromamba install -n base -c conda-forge zsh
 ```
 
+# Add zsh to PATH
+```bash
+export PATH="$HOME/.micromamba/bin:$HOME/.local/bin:$PATH"
+```
+
 # Install oh-my-zsh
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -32,4 +37,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 \
   https://github.com/romkatv/powerlevel10k.git \
   "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+```
+
+# Install Neovim
+```bash
+cd ~
+curl -LO https://github.com/neovim/neovim/releases/download/v0.11.3/nvim-linux-x86_64.tar.gz
+tar -xzf nvim-linux-x86_64.tar.gz
+mkdir -p ~/.local
+cp -r ~/nvim-linux-x86_64/* ~/.local/
+rm -rf ~/nvim-linux-x86_64
+rm -f ~/nvim-linux-x86_64.tar.gz
+nvim --version
 ```
